@@ -22,7 +22,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest -f ./fastapi_todo/Dockerfile ./fastapi_todo
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest
 
       - name: Azure Login
