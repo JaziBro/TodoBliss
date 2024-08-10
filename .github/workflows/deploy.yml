@@ -28,6 +28,7 @@ jobs:
           context: ./fastapi_todo
           file: ./fastapi_todo/Dockerfile
           push: true
+          
       - name: Azure Login
         uses: azure/login@v1
         with:
