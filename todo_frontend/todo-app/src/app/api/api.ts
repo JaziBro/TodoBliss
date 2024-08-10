@@ -3,7 +3,7 @@ import { Todo } from '../types/types';
 
 // Create an instance of Axios with default configurations
 export const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 // Function to set the Authorization token in the Axios headers
