@@ -34,7 +34,7 @@ jobs:
         run: |
           az containerapp create \
             --name mycontainerapp \
-            --resource-group myresourcegroup2 \
+            --resource-group myresourcegroup \
             --environment mycontainerappenv \
             --image ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest \
             --target-port 8000 \
