@@ -22,7 +22,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest ./fastapi_todo         
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest ./fastapi_todo
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest
 
       - name: Azure Login
@@ -30,15 +30,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Create Azure Container App Environment
-        run: |
-          az containerapp env create \
-            --name mycontainerappenv \
-            --resource-group myresourcegroup2 \
-            --location eastus \
-            --logs-workspace "$(az monitor log-analytics workspace show --resource-group myresourcegroup2 --workspace-name myworkspace --query id --output tsv)"
-
-      - name: Create or Update Azure Container App
+      - name: Deploy to Azure Container Apps
         run: |
           az containerapp create \
             --name mycontainerapp \
@@ -47,5 +39,4 @@ jobs:
             --image ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest \
             --target-port 8000 \
             --ingress 'external' \
-            --env-vars 'APP_SETTING=my-setting' \
-
+            --env-vars 'APP_SETTING=my-setting'
