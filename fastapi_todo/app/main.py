@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session, select
 from fastapi import FastAPI, Depends, HTTPException
-from app.controllers.auth_controllers import get_current_user, login_func
+from app.controllers.auth_controllers import get_current_user, login_func 
 from app.controllers.user_controllers import signup_func
 from app.database.database import create_db_and_tables, get_session, lifespan
 from app.models.models import User, Todo, TodoUpdate, UserUpdate

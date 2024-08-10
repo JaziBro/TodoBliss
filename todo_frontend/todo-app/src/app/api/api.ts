@@ -13,14 +13,25 @@ export const setAuthToken = (token: string) => {
 
 // Function to handle user login
 export const login = async (email: string, password: string): Promise<string> => {
-  const response = await api.post('/token', new URLSearchParams({ username: email, password }));
-  const accessToken = response.data.access_token;
-  
-  // Store the token in localStorage
-  localStorage.setItem('token', accessToken);
+  try {
+    console.log('Attempting login with:', { email, password });
 
-  return accessToken;
+    const response = await api.post('/token', new URLSearchParams({ username: email, password }));
+    
+    console.log('Login response:', response);
+
+    const accessToken = response.data.access_token;
+
+    // Store the token in localStorage
+    localStorage.setItem('token', accessToken);
+
+    return accessToken;
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
 };
+
 
 export const signup = async (name: string, email: string, password: string): Promise<string> => {
   const response = await api.post('/signup', {
@@ -36,8 +47,14 @@ export const signup = async (name: string, email: string, password: string): Pro
   return accessToken;
 };
 
+// api.ts
 export const logout = async (): Promise<void> => {
-  await api.post('/logout'); // Replace with the actual endpoint for logging out
+  try {
+    await api.post('/logout'); // Make sure the path '/logout' exists in your backend
+  } catch (error) {
+    console.error('Error logging out:', error);
+    throw error;
+  }
 };
 
 

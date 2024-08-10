@@ -76,16 +76,11 @@ export default function Home() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout(); // Call the logout API function
-      localStorage.removeItem('token'); // Remove the token from local storage
-      setIsLoggedIn(false); // Update the state
-      router.push('/signup'); // Redirect to signup page
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from local storage
+    router.push('/signup'); // Redirect user to signup page after logout
   };
+  
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col items-center p-8">
