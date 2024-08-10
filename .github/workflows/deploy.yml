@@ -36,7 +36,7 @@ jobs:
             --name mycontainerappenv \
             --resource-group myresourcegroup2 \
             --location eastus \
-            --logs-workspace "$(az monitor log-analytics workspace show --resource-group myresourcegroup --workspace-name myworkspace --query id --output tsv)"
+            --logs-workspace "$(az monitor log-analytics workspace show --resource-group myresourcegroup2 --workspace-name myworkspace --query id --output tsv)"
 
       - name: Create or Update Azure Container App
         run: |
