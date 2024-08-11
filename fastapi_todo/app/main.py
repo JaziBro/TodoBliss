@@ -24,7 +24,7 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",  # Replace with your frontend's URL and port
     "http://127.0.0.1:3000",
-    "https://todo-bliss.vercel.app/"
+    "https://todo-bliss.vercel.app"
 ]
 
 app.add_middleware(
