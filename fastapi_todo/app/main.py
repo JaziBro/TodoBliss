@@ -123,8 +123,11 @@ async def add_user(token: Annotated[dict, Depends(signup_func)]):
 # route for logging in
 @app.post("/token", response_model=dict)
 async def token_endpoint(form_data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_session)):
-    return login_func(form_data, session)
-
+    try:
+        return login_func(form_data, session)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
 # route for logging out
 @app.post("/logout")
 def logout(current_user: User = Depends(get_current_user)):

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { login, signup } from '../api/api';
@@ -13,9 +13,14 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState(''); // For signup mode
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); // Loading state
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+    setError(null); // Clear any previous errors
+  
     try {
       let token: string;
       if (mode === 'login') {
@@ -30,22 +35,29 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
     } catch (err: any) {
       console.error('Signup/Login error:', err.response?.data);
       
-      // Handle different types of errors
-      const errorResponse = err.response?.data?.detail;
-      
-      // If it's an array, map over it to display each message
-      if (Array.isArray(errorResponse)) {
-        setError(errorResponse.map((errObj: any) => errObj.msg).join(', '));
-      } else if (typeof errorResponse === 'string') {
-        setError(errorResponse);
+      // Improved error handling based on response structure
+      if (err.response?.data?.detail) {
+        const errorResponse = err.response.data.detail;
+  
+        if (Array.isArray(errorResponse)) {
+          setError(errorResponse.map((errObj: any) => errObj.msg).join(', '));
+        } else if (typeof errorResponse === 'string') {
+          setError(errorResponse);
+        } else {
+          setError('Authentication failed. Please check your credentials and try again.');
+        }
       } else {
-        setError('Authentication failed. Please check your credentials and try again.');
+        // Log the entire error object for debugging
+        console.error('Full error object:', err);
+        console.log('Login API URL:', `${process.env.NEXT_PUBLIC_API_URL}`);
+        setError('An unexpected error occurred. Please try again.');
       }
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
   
-  
-  
+
   return (
     <div className="flex justify-center items-center h-screen bg-cover bg-center bg-[url('/login-bg.jpg')]">
       <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
@@ -104,8 +116,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
             <button
               type="submit"
               className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+              disabled={loading} // Disable button when loading
             >
-              {mode === 'login' ? 'Log In' : 'Sign Up'}
+              {loading ? 'Processing...' : mode === 'login' ? 'Log In' : 'Sign Up'}
             </button>
           </div>
         </form>

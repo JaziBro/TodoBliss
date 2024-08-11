@@ -14,22 +14,25 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 from fastapi.security import OAuth2PasswordRequestForm
 
 def login_func(form_data: OAuth2PasswordRequestForm, session: Annotated[Session, Depends(get_session)]):
-    # SQL query to check if user email (provided by user) is present in db
-    query = select(User).where(User.user_email == form_data.username)  # Email used as username
+    print(f"Attempting login with username: {form_data.username}")
+    
+    query = select(User).where(User.user_email == form_data.username)
     db_user = session.exec(query).one_or_none()
 
-    # if user email not found in db, exception raised
     if db_user is None:
-        raise HTTPException(status_code=404, detail="User not found")
+        print("User not found")
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    # Password checking
-    is_password_exist = verifyPassword(form_data.password, db_user.user_password)
-    # if password is incorrect, exception raised
-    if not is_password_exist:
-        raise HTTPException(status_code=404, detail="Incorrect password")
+    print(f"Found user: {db_user.user_email}")
+    
+    is_password_correct = verifyPassword(form_data.password, db_user.user_password)
+    if not is_password_correct:
+        print("Incorrect password")
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    # JWT token generation
     token = generateAccessToken({"sub": str(db_user.user_id)}, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    print(f"Generated token: {token}")
+
     return {"access_token": token, "token_type": "bearer"}
 
 
