@@ -62,7 +62,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
     <div className="flex justify-center items-center h-screen bg-cover bg-center bg-[url('/login-bg.jpg')]">
       <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl font-bold text-center mb-2">
-          WELCOME TO TODOBLISS!
+          WELCOME TO TodoBliss!
         </h2>
         <h2 className="text-2xl font-bold text-center mb-6">
           {mode === 'login' ? 'Login' : 'Signup'}
