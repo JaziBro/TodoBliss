@@ -15,7 +15,7 @@ app = FastAPI(
     version="0.0.1",
     servers=[
         {
-            "url": "http://127.0.0.1:8000/", 
+            "url": "https://mycontainerapp.salmongrass-d2b6dc74.eastus.azurecontainerapps.io", 
             "description": "Development Server"
         }
     ] 
