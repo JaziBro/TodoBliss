@@ -22,9 +22,9 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost:3000",  # Replace with your frontend's URL and port
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://todo-bliss.vercel.app"
+    "https://todo-bliss.vercel.app",  
 ]
 
 app.add_middleware(
@@ -34,6 +34,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 create_db_and_tables()
 
 
