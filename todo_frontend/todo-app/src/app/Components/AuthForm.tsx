@@ -18,27 +18,22 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); // Start loading
-    setError(null); // Clear any previous errors
+    setLoading(true);
+    setError(null);
   
     try {
       let token: string;
       if (mode === 'login') {
         token = await login(email, password);
-        localStorage.setItem('token', token);
-        router.push('/');
       } else {
         token = await signup(name, email, password);
-        localStorage.setItem('token', token);
-        router.push('/login');
       }
+      localStorage.setItem('token', token);
+      router.push(mode === 'login' ? '/' : '/login');
     } catch (err: any) {
-      console.error('Signup/Login error:', err.response?.data);
-      
-      // Improved error handling based on response structure
+      console.error('Signup/Login error:', err.response?.data || err.message);
       if (err.response?.data?.detail) {
         const errorResponse = err.response.data.detail;
-  
         if (Array.isArray(errorResponse)) {
           setError(errorResponse.map((errObj: any) => errObj.msg).join(', '));
         } else if (typeof errorResponse === 'string') {
@@ -47,15 +42,13 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
           setError('Authentication failed. Please check your credentials and try again.');
         }
       } else {
-        // Log the entire error object for debugging
-        console.error('Full error object:', err);
-        console.log('Login API URL:', `${process.env.NEXT_PUBLIC_API_URL}`);
         setError('An unexpected error occurred. Please try again.');
       }
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
+  
   
 
   return (

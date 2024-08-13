@@ -4,6 +4,7 @@ import { Todo } from '../types/types';
 // Create an instance of Axios with default configurations
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,   
+  withCredentials: true
 });
 
 // Function to set the Authorization token in the Axios headers
@@ -91,7 +92,7 @@ export const createTodo = async (todo: { content: string }): Promise<Todo> => {
 
 // Function to update an existing todo
 export const updateTodo = async (id: number, todo: { content: string }): Promise<Todo> => {
-  const response = await api.put(`/todos/${id}`, todo);
+  const response = await api.put(`/todos/${id}/`, todo);
   return response.data;
 };
 
@@ -99,3 +100,10 @@ export const updateTodo = async (id: number, todo: { content: string }): Promise
 export const deleteTodo = async (id: number): Promise<void> => {
   await api.delete(`/todos/${id}/`);
 };
+
+// Function to get a single todo by ID
+export const getTodoById = async (id: number): Promise<Todo> => {
+  const response = await api.get(`/todos/${id}/`);
+  return response.data;
+};
+

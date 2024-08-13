@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getTodos, createTodo, setAuthToken, updateTodo, deleteTodo, logout } from './api/api';
@@ -80,7 +80,7 @@ export default function Home() {
     localStorage.removeItem('token'); // Remove token from local storage
     router.push('/signup'); // Redirect user to signup page after logout
   };
-
+  
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col items-center p-8">
       <nav className="w-full flex justify-between items-center py-4">
@@ -132,25 +132,7 @@ export default function Home() {
               <li key={todo.id} className="mb-4">
                 <div className="bg-white p-4 rounded-lg shadow-md flex flex-col space-y-2">
                   <span className="font-semibold">{`Todo ${index + 1}`}</span>
-                  <div className="flex items-center justify-between">
-                    {/* Directly display the todo content without a link */}
-                    <span className='text-blue-500'>{todo.content}</span>
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => setEditingTodoId(todo.id)}
-                        className="bg-purple-600 text-white hover:bg-purple-800 px-3 py-1 rounded-md"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDeleteTodo(todo.id)}
-                        className="bg-red-500 text-white hover:bg-red-700 px-3 py-1 rounded-md"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                  {editingTodoId === todo.id && (
+                  {editingTodoId === todo.id ? (
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
@@ -164,6 +146,26 @@ export default function Home() {
                       >
                         Update
                       </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <Link href={`/todo/${todo.id}`} className="text-blue-600 hover:underline">
+                        {todo.content}
+                      </Link>
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => setEditingTodoId(todo.id)}
+                          className="bg-purple-600 text-white hover:bg-purple-800 px-3 py-1 rounded-md"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteTodo(todo.id)}
+                          className="bg-red-500 text-white hover:bg-red-700 px-3 py-1 rounded-md"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
