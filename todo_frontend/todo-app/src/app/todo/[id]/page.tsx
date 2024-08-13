@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getTodoById } from '../../api/api'; // Adjust the import path according to your project structure
+import { getTodoById } from '../../api/api'; 
 import { Todo } from '../../types/types';
 
 export default function TodoPage({ params }: { params: { id: string } }) {
@@ -16,7 +16,7 @@ export default function TodoPage({ params }: { params: { id: string } }) {
         setTodo(todoData);
       } catch (error) {
         console.error('Error fetching todo:', error);
-        router.push('/'); // Redirect to home if the todo is not found
+        router.push('/'); 
       } finally {
         setLoading(false);
       }
