@@ -91,7 +91,7 @@ export const createTodo = async (todo: { content: string }): Promise<Todo> => {
 
 // Function to update an existing todo
 export const updateTodo = async (id: number, todo: { content: string }): Promise<Todo> => {
-  const response = await api.put(`/todos/${id}/`, todo);
+  const response = await api.put(`/todos/${id}`, todo);
   return response.data;
 };
 

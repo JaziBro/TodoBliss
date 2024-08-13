@@ -80,7 +80,6 @@ export default function Home() {
     localStorage.removeItem('token'); // Remove token from local storage
     router.push('/signup'); // Redirect user to signup page after logout
   };
-  
 
   return (
     <div className="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col items-center p-8">
@@ -134,7 +133,8 @@ export default function Home() {
                 <div className="bg-white p-4 rounded-lg shadow-md flex flex-col space-y-2">
                   <span className="font-semibold">{`Todo ${index + 1}`}</span>
                   <div className="flex items-center justify-between">
-                    <span>{todo.content}</span>
+                    {/* Directly display the todo content without a link */}
+                    <span className='text-blue-500'>{todo.content}</span>
                     <div className="flex space-x-2">
                       <button
                         onClick={() => setEditingTodoId(todo.id)}
