@@ -15,7 +15,7 @@ app = FastAPI(
     version="0.0.1",
     servers=[
         {
-            "url": "https://mycontainerapp.salmongrass-d2b6dc74.eastus.azurecontainerapps.io", 
+            "url": "https://mycontainerapp.salmongrass-d2b6dc74.eastus.azurecontainerapps.io/", 
             "description": "Production Server"
         }
     ] 
@@ -24,7 +24,7 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://todo-bliss.vercel.app/",  
+    "https://todo-bliss.vercel.app",  
 ]
 
 app.add_middleware(
