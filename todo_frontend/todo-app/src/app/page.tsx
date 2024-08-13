@@ -133,7 +133,24 @@ export default function Home() {
               <li key={todo.id} className="mb-4">
                 <div className="bg-white p-4 rounded-lg shadow-md flex flex-col space-y-2">
                   <span className="font-semibold">{`Todo ${index + 1}`}</span>
-                  {editingTodoId === todo.id ? (
+                  <div className="flex items-center justify-between">
+                    <span>{todo.content}</span>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => setEditingTodoId(todo.id)}
+                        className="bg-purple-600 text-white hover:bg-purple-800 px-3 py-1 rounded-md"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteTodo(todo.id)}
+                        className="bg-red-500 text-white hover:bg-red-700 px-3 py-1 rounded-md"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                  {editingTodoId === todo.id && (
                     <div className="flex items-center space-x-2">
                       <input
                         type="text"
@@ -147,26 +164,6 @@ export default function Home() {
                       >
                         Update
                       </button>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-between">
-                      <Link href={`/todo/${todo.id}`} className="text-blue-600 hover:underline">
-                        {todo.content}
-                      </Link>
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => setEditingTodoId(todo.id)}
-                          className="bg-purple-600 text-white hover:bg-purple-800 px-3 py-1 rounded-md"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDeleteTodo(todo.id)}
-                          className="bg-red-500 text-white hover:bg-red-700 px-3 py-1 rounded-md"
-                        >
-                          Delete
-                        </button>
-                      </div>
                     </div>
                   )}
                 </div>
