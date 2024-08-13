@@ -23,6 +23,7 @@ app = FastAPI(
 
 origins = [
     "http://localhost:3000",
+    "https://todo-bliss-69ej5x693-jazibros-projects.vercel.app",
     "http://127.0.0.1:3000",
     "https://todo-bliss.vercel.app",  
 ]
