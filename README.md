@@ -19,12 +19,12 @@ To run TodoBliss locally:
 1. Clone the repository:
    ```bash
    git clone https://github.com/<username>/TodoBliss.git
-Install dependencies:
-bash
-Copy code
+2, Install dependencies:
+```bash
 cd TodoBliss
 npm install
-Start the development server:
-bash
-Copy code
+```
+3. Start the development server:
+```bash
 npm run dev
+```
