@@ -23,11 +23,6 @@ function Hero() {
                   Get Started
                 </Button>
               </Link>
-              <Link href="/demo">
-                <Button variant="outline" size="lg" className="border-[#4ECDC4] text-[#4ECDC4] hover:bg-[#4ECDC4]/10">
-                  Try Demo
-                </Button>
-              </Link>
             </div>
           </div>
           <TaskPreview />
