@@ -18,7 +18,7 @@ function Hero() {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Link href="/signup">
+              <Link href="/register">
                 <Button size="lg" className="bg-[#FF6B6B] hover:bg-[#FF6B6B]/90 text-white">
                   Get Started
                 </Button>
