@@ -19,6 +19,7 @@ export default function TodosPage() {
         },
       });
       // Map the backend response to the expected frontend format
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const mappedTodos = response.data.map((todo: any) => ({
         id: todo.id.toString(),
         title: todo.content, // Map 'content' to 'title'
