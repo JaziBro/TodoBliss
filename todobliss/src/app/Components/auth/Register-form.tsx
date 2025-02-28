@@ -50,7 +50,7 @@ export default function SignUpForm() {
           <div className="space-y-6">
             <div>
               <label htmlFor="fullname" className="block text-sm/6 font-medium text-white">
-                Full Name
+                Username
               </label>
               <div className="mt-2">
                 <Input
