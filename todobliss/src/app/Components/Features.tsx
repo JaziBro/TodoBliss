@@ -29,7 +29,7 @@ export function Features() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-transparent bg-clip-text">
-              Features you'll love
+              Features you&apos;ll love
             </h2>
             <p className="max-w-[900px] text-gray-400 md:text-xl">
               Everything you need to stay organized and productive

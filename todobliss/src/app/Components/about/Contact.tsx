@@ -14,7 +14,7 @@ export function ContactSection() {
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] text-transparent bg-clip-text">
                 Get in Touch
               </h2>
-              <p className="text-gray-400 md:text-xl">Have questions? We'd love to hear from you.</p>
+              <p className="text-gray-400 md:text-xl">Have questions? We&apos;d love to hear from you.</p>
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-4">

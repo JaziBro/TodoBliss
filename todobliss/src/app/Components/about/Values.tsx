@@ -10,13 +10,13 @@ const values = [
   {
     icon: Heart,
     title: "User-Centered",
-    description: "Every feature we build starts with our users' needs and feedback.",
+    description: "Every feature we build starts with our users needs and feedback.",
     color: "#4ECDC4",
   },
   {
     icon: Zap,
     title: "Continuous Innovation",
-    description: "We're always exploring new ways to make task management better.",
+    description: "We are always exploring new ways to make task management better.",
     color: "#FFE66D",
   },
   {

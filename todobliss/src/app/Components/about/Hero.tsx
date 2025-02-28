@@ -8,7 +8,7 @@ export function AboutHero() {
               Making Productivity Fun
             </h1>
             <p className="text-gray-400 md:text-xl max-w-[700px]">
-              TodoBliss started with a simple idea: productivity tools should be enjoyable to use. We're on a mission to
+              TodoBliss started with a simple idea: productivity tools should be enjoyable to use. We&apos;re on a mission to
               make task management delightful while keeping it powerful and efficient.
             </p>
           </div>
