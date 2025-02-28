@@ -11,7 +11,7 @@ function Hero() {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-gradient-to-r from-[#FF6B6B] via-[#4ECDC4] to-[#FFE66D] text-transparent bg-clip-text">
-                Stay organized with TaskFlow
+                Stay organized with TodoBliss
               </h1>
               <p className="max-w-[600px] text-gray-400 md:text-xl">
                 The simple, intuitive todo app that helps you manage tasks, boost productivity, and achieve your goals.

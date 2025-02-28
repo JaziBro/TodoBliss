@@ -23,7 +23,7 @@ export function ContactSection() {
               </div>
               <div className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-[#4ECDC4]" />
-                <p className="text-gray-400">hello@taskflow.com</p>
+                <p className="text-gray-400">hello@todobliss.com</p>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-[#FFE66D]" />

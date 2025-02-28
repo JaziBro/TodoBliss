@@ -11,7 +11,7 @@ export function CTA() {
             Start organizing today
           </h2>
           <p className="mx-auto max-w-[600px] text-gray-400 md:text-xl">
-            Join thousands of users who trust TaskFlow to manage their daily tasks.
+            Join thousands of users who trust TodoBliss to manage their daily tasks.
           </p>
         </div>
         <div className="mx-auto w-full max-w-sm space-y-2">

@@ -22,7 +22,7 @@ const values = [
   {
     icon: Users,
     title: "Community Driven",
-    description: "Our community shapes the future of TaskFlow through active collaboration.",
+    description: "Our community shapes the future of TodoBliss through active collaboration.",
     color: "#FF6B6B",
   },
 ]
