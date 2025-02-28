@@ -1,27 +1,27 @@
 "use client"
 
-import { useState } from "react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Plus, Loader2 } from "lucide-react"
-import { toast } from "sonner"
-import api from "@/app/api/api"
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Plus, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import api from "@/app/api/api";
 
 interface AddTodoFormProps {
-  refreshTodos: () => void // Define the prop
+  refreshTodos: () => void; // Define the prop
 }
 
 export function AddTodoForm({ refreshTodos }: AddTodoFormProps) {
-  const [title, setTitle] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const [title, setTitle] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!title.trim()) return
+    e.preventDefault();
+    if (!title.trim()) return;
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       await api.post(
         "/todos",
         { content: title }, // Send 'content' instead of 'title'
@@ -30,17 +30,17 @@ export function AddTodoForm({ refreshTodos }: AddTodoFormProps) {
             Authorization: `Bearer ${token}`,
           },
         },
-      )
+      );
 
-      setTitle("")
-      toast("Task added")
-      refreshTodos() // Refresh the todo list
+      setTitle("");
+      toast("Task added");
+      refreshTodos(); // Refresh the todo list
     } catch (error) {
-      toast("Failed to add task")
+      toast("Failed to add task");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">
@@ -60,5 +60,5 @@ export function AddTodoForm({ refreshTodos }: AddTodoFormProps) {
         <span className="ml-2">Add</span>
       </Button>
     </form>
-  )
+  );
 }

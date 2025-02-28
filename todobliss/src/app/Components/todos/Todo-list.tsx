@@ -1,35 +1,35 @@
 "use client"
 
-import { useState } from "react"
-import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Loader2, Trash2, Check, Pencil } from "lucide-react"
-import api from "@/app/api/api"
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Loader2, Trash2, Check, Pencil } from "lucide-react";
+import api from "@/app/api/api";
 
 interface Todo {
-  id: string
-  title: string
-  completed: boolean
+  id: string;
+  title: string;
+  completed: boolean;
 }
 
-type FilterType = "all" | "active" | "completed"
+type FilterType = "all" | "active" | "completed";
 
 interface TodoListProps {
-  todos: Todo[]
-  fetchTodos: () => void
+  todos: Todo[];
+  fetchTodos: () => void;
 }
 
 export function TodoList({ todos, fetchTodos }: TodoListProps) {
-  const [isLoading, setIsLoading] = useState(false)
-  const [filter, setFilter] = useState<FilterType>("all")
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [editValue, setEditValue] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  const [filter, setFilter] = useState<FilterType>("all");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState("");
 
   // Toggle todo completion status
   const toggleTodo = async (id: string, completed: boolean) => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       await api.patch(
         `/todos/${id}`,
         { completed: !completed },
@@ -38,63 +38,63 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
             Authorization: `Bearer ${token}`,
           },
         },
-      )
-      fetchTodos() // Refresh the todo list
+      );
+      fetchTodos(); // Refresh the todo list
     } catch (error) {
-      toast("Failed to update task")
+      toast("Failed to update task");
     }
-  }
+  };
 
   // Delete a todo
   const deleteTodo = async (id: string) => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       await api.delete(`/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      fetchTodos() // Refresh the todo list
-      toast("Task deleted")
+      });
+      fetchTodos(); // Refresh the todo list
+      toast("Task deleted");
     } catch (error) {
-      toast("Failed to delete task")
+      toast("Failed to delete task");
     }
-  }
+  };
 
   // Start editing a todo
   const startEdit = (todo: Todo) => {
-    setEditingId(todo.id)
-    setEditValue(todo.title)
-  }
+    setEditingId(todo.id);
+    setEditValue(todo.title);
+  };
 
   // Update a todo
   const updateTodo = async (id: string) => {
-    if (!editValue.trim()) return
+    if (!editValue.trim()) return;
     try {
-      const token = localStorage.getItem("token")
-      await api.patch(
+      const token = localStorage.getItem("token");
+      await api.put( // Use PUT instead of PATCH
         `/todos/${id}`,
-        { content: editValue },
+        { content: editValue }, // Ensure this matches the backend schema
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
-      )
-      fetchTodos() // Refresh the todo list
-      setEditingId(null)
-      toast("Task updated")
+      );
+      fetchTodos(); // Refresh the todo list
+      setEditingId(null);
+      toast("Task updated");
     } catch (error) {
-      toast("Failed to update task")
+      toast("Failed to update task");
     }
-  }
+  };
 
   // Filter todos based on the selected filter
   const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.completed
-    if (filter === "completed") return todo.completed
-    return true
-  })
+    if (filter === "active") return !todo.completed;
+    if (filter === "completed") return todo.completed;
+    return true;
+  });
 
   // Loading state
   if (isLoading) {
@@ -102,7 +102,7 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
       <div className="flex justify-center items-center py-8">
         <Loader2 className="h-8 w-8 animate-spin text-[#4ECDC4]" />
       </div>
-    )
+    );
   }
 
   return (
@@ -191,5 +191,5 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

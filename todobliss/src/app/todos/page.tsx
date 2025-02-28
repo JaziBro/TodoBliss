@@ -1,32 +1,38 @@
-"use client" // Add this line to mark the component as a Client Component
+"use client"
 
-import { useState, useEffect } from "react"
-import { TodoList } from "@/app/Components/todos/Todo-list"
-import { AddTodoForm } from "@/app/Components/todos/Add-todo-form"
-import api from "@/app/api/api"
+import { useState, useEffect } from "react";
+import { TodoList } from "@/app/Components/todos/Todo-list";
+import { AddTodoForm } from "@/app/Components/todos/Add-todo-form";
+import api from "@/app/api/api";
 
 export default function TodosPage() {
-  const [todos, setTodos] = useState<any[]>([]) // State to hold todos
+  const [todos, setTodos] = useState<any[]>([]); // State to hold todos
 
   // Function to fetch todos from the backend
   const fetchTodos = async () => {
     try {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const response = await api.get("/todos", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
-      setTodos(response.data) // Update the todos state
+      });
+      // Map the backend response to the expected frontend format
+      const mappedTodos = response.data.map((todo: any) => ({
+        id: todo.id.toString(),
+        title: todo.content, // Map 'content' to 'title'
+        completed: false, // Add a 'completed' field if needed
+      }));
+      setTodos(mappedTodos); // Update the todos state
     } catch (error) {
-      console.error("Failed to fetch todos:", error)
+      console.error("Failed to fetch todos:", error);
     }
-  }
+  };
 
   // Fetch todos on component mount
   useEffect(() => {
-    fetchTodos()
-  }, [])
+    fetchTodos();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#1A1A1A] text-white p-4 md:p-8">
@@ -39,8 +45,9 @@ export default function TodosPage() {
         </div>
         {/* Pass the fetchTodos function as the refreshTodos prop */}
         <AddTodoForm refreshTodos={fetchTodos} />
+        {/* Pass the todos and fetchTodos function to TodoList */}
         <TodoList todos={todos} fetchTodos={fetchTodos} />
       </div>
     </div>
-  )
+  );
 }

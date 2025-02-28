@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://todo-backend-1-0lng.onrender.com", // Use your backend URL here
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://todo-backend-1-0lng.onrender.com",
   headers: {
-    "Content-Type": "application/json", // Default headers
+    "Content-Type": "application/json",
   },
 });
 
