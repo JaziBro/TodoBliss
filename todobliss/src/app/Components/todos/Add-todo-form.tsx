@@ -36,6 +36,7 @@ export function AddTodoForm({ refreshTodos }: AddTodoFormProps) {
       toast("Task added");
       refreshTodos(); // Refresh the todo list
     } catch (error) {
+      console.error("Error adding task:", error);
       toast("Failed to add task");
     } finally {
       setIsLoading(false);

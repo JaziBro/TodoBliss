@@ -7,7 +7,6 @@ import Link from "next/link"
 import { Authlogo } from "./Authlogo"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import api from "@/app/api/api"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
 
