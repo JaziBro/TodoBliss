@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Github } from "lucide-react"
 
 export function SignInForm() {
   const [isLoading, setIsLoading] = React.useState(false)

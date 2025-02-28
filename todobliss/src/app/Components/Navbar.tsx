@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { ListTodo } from "lucide-react"
 import logo from "../../../public/logo-01.png"
 import Image from "next/image"
 
