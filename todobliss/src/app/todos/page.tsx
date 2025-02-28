@@ -6,6 +6,7 @@ import { AddTodoForm } from "@/app/Components/todos/Add-todo-form";
 import api from "@/app/api/api";
 
 export default function TodosPage() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [todos, setTodos] = useState<any[]>([]); // State to hold todos
 
   // Function to fetch todos from the backend
