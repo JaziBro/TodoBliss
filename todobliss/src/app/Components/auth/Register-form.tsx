@@ -23,11 +23,11 @@ export default function SignUpForm() {
     setIsLoading(true)
 
     try {
-      const response = await api.post("/register", {
-        username: fullName,
-        email,
-        password,
-      })
+      // const response = await api.post("/register", {
+      //   username: fullName,
+      //   email,
+      //   password,
+      // })
 
       toast("Registration Successful")
       router.push("/login")
