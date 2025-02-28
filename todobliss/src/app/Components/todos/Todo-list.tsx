@@ -21,7 +21,7 @@ interface TodoListProps {
 }
 
 export function TodoList({ todos, fetchTodos }: TodoListProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   const [filter, setFilter] = useState<FilterType>("all");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
@@ -41,6 +41,7 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
       );
       fetchTodos(); // Refresh the todo list
     } catch (error) {
+      console.log(error)
       toast("Failed to update task");
     }
   };
@@ -57,6 +58,7 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
       fetchTodos(); // Refresh the todo list
       toast("Task deleted");
     } catch (error) {
+      console.log(error)
       toast("Failed to delete task");
     }
   };
@@ -85,6 +87,7 @@ export function TodoList({ todos, fetchTodos }: TodoListProps) {
       setEditingId(null);
       toast("Task updated");
     } catch (error) {
+      console.log(error)
       toast("Failed to update task");
     }
   };
